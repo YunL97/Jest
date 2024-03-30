@@ -16,7 +16,7 @@
 test('asdf', () ={
     render(<App />)
 
-    const buttonElement = screen.
+    const buttonElement = screen.debug()
 })
 ```
 * screen 객체를 사용해서 render에서 생성된 시뮬레이션인 dom에 엑세스 할 수 있다
@@ -32,3 +32,5 @@ test('asdf', () ={
 * 네트워크 호출을 하는경우 데이터가 돌아올 때 이미 컴포넌트는 언마운트 되기 때문에 오류 발생
 * 테스트에서 컴포넌트 렌더링 -> 네트워크 호출 트리거 -> unmount 메소드 실행해서 컴포넌트 언마운트 -> 언마운트 일어날때 네트워크 호출이 취소
 * 명시적 언마운트가 필요한이유: testing librart에서 테스트 클린업의 일부로 컴포넌트를 언마운트 하면 명시적으로 컴포넌트를 언마운트해야한다.
+* getBy* 를 썼는데 실패한다면 다른 서버 호출이나 async 동작이 있는것 -> await findBy* 를 사용해야한다
+* not wrapped in act... 경고 -> 테스트 완료후 업데이트가 있었다는 뜻 -> useEffect의 클린업 함수로 해당 컴포넌트가 비동기 동작을 중단하게 해야한다
